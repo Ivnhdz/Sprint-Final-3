@@ -36,15 +36,15 @@ for nombre_usuario in nombres_usuarios:
     usuarios.append(usuario)
 
 
-# pedir numero telefónico y seguir pidiendolo hasta que cada usuario lo haya registrado (se solicita número válido de 9 digitos) #
+# pedir numero telefónico y seguir pidiendolo hasta que cada usuario lo haya registrado ¡se actualiza longitud de telefono acorde a requerimiento del trabajo! #
 for usuario in usuarios:
     while True:
         telefono = input(f"Ingresa el número telefónico para {usuario['nombre']}: ")
-        if telefono.isdigit() and len(telefono) >= 9:
+        if telefono.isdigit() and len(telefono) >= 8:
             usuario['telefono'] = telefono
             break
         else:
-            print("Ingresa un teléfono válido de 9 dígitos")
+            print("Ingresa un teléfono válido de 8 dígitos")
 
 
 # Imprime las cuentas de los usuarios #
