@@ -1,21 +1,3 @@
-'''
-programa que recorra una liste que se le agreguen maximo 10 usuarios de lo que sea  -------------------------------OK
-
-funcion para crearle una cuenta automaticamente -------------------------------------------------------------------OK
-
-asignar una contraseña a cada cuenta, debe crearse con random y debe tener mayuscula, minuscula y numeros ---------OK
-
-cada cuenta debe guardarse en una nueva variable con su contraseña ------------------------------------------------OK
-
-Por cada cuenta debe pedir un número telefónico para contactarse. -------------------------------------------------OK
-
-el programa no terminará de preguntar por los numeros hasta que todas las cuentas tengan un numero de contacto asignado OK
-
-el programa debe verificar que el numero de telefono tenga 8 digitos numericos (se debe guardar como string) --- OK
-
-entregar en un word o pdf con la ruta del repositorio github
-
-'''
 import random
 import string
 
@@ -23,13 +5,13 @@ import string
 def cuentas(nombre):
     nombreusuario = "Usuario_" + nombre.lower()
     
-    # crear contraseña con numeros/letras aleatorios #
+    # crear contraseña con numeros/letras aleatorios (le puse un máximo de 8 caracteres a la contraseña para que no sea tan larga ni tan corta) #
     caracteres = string.ascii_letters + string.digits
     contrasena = ''.join(random.choice(caracteres) for _ in range(8))
     
     return nombreusuario, contrasena
 
-# contenedor de los 10 nuevos usuarios #
+# nombres de los 10 nuevos usuarios #
 nombres_usuarios = [
     {'nombre':'nombre1'},
     {'nombre':'nombre2'},
@@ -50,25 +32,25 @@ usuarios = []
 for nombre_usuario in nombres_usuarios:
     nombre = nombre_usuario['nombre']
     username, password = cuentas(nombre)
-    usuario = {'nombre': nombre, 'username': username, 'password': password}
+    usuario = {'nombre': nombre, 'Nombre de usuario': username, 'contraseña': password}
     usuarios.append(usuario)
 
 
-# pedir numero telefónico y seguir pidiendolo hasta que cada usuario lo haya registrado #
+# pedir numero telefónico y seguir pidiendolo hasta que cada usuario lo haya registrado (se solicita número válido de 9 digitos) #
 for usuario in usuarios:
     while True:
         telefono = input(f"Ingresa el número telefónico para {usuario['nombre']}: ")
-        if telefono.isdigit() and len(telefono) >= 8:
+        if telefono.isdigit() and len(telefono) >= 9:
             usuario['telefono'] = telefono
             break
         else:
-            print("Ingresa un teléfono válido de 8 dígitos")
+            print("Ingresa un teléfono válido de 9 dígitos")
 
 
-# Imprimir las cuentas de los usuarios #
+# Imprime las cuentas de los usuarios #
 for usuario in usuarios:
     print("Nombre:", usuario['nombre'])
-    print("Nombre de usuario:", usuario['username'])
-    print("Contraseña:", usuario['password'])
-    print("Teléfono: #", usuario['telefono'])
+    print("Nombre de usuario:", usuario['Nombre de usuario'])
+    print("Contraseña:", usuario['contraseña'])
+    print("Teléfono:","#" + usuario['telefono'])
     print()
